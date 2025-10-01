@@ -13,12 +13,20 @@
   },
   "workspace": {
     "scripts": {
-      "build": ["pwsh ./scripts/build.ps1 --release"],
-      "clean": ["pwsh ./scripts/build.ps1 -clean"],
-      "copy": ["pwsh ./scripts/copy.ps1"],
-      "copyRelease": ["pwsh ./scripts/copy.ps1 --release"]
+      "build": [
+        "pwsh ./scripts/build.ps1 --release"
+      ],
+      "clean": [
+        "pwsh ./scripts/build.ps1 -clean"
+      ],
+      "copy": [
+        "pwsh ./scripts/copy.ps1"
+      ],
+      "copyRelease": [
+        "pwsh ./scripts/copy.ps1 --release"
+      ]
     },
-    "ndk": "^27.2.12479018",
+    "ndk": "^27.3.13750724",
     "qmodIncludeDirs": [
       "./build",
       "./extern/libs"
@@ -29,63 +37,63 @@
   "dependencies": [
     {
       "id": "beatsaber-hook",
-      "versionRange": "^6.1.7",
+      "versionRange": "^6.4.2",
       "additionalData": {}
     },
     {
       "id": "bs-cordl",
-      "versionRange": "^4007.0.0",
+      "versionRange": "4008.*",
       "additionalData": {}
     },
     {
       "id": "custom-types",
-      "versionRange": "^0.18.0",
+      "versionRange": "^0.18.4",
       "additionalData": {
         "includeQmod": true
       }
     },
     {
       "id": "custom-json-data",
-      "versionRange": "^0.24.0",
+      "versionRange": "^0.24.4",
       "additionalData": {}
     },
     {
       "id": "config-utils",
-      "versionRange": "*",
+      "versionRange": "2.0.3",
       "additionalData": {}
     },
     {
       "id": "tracks",
-      "versionRange": "^2.4.3",
+      "versionRange": "^2.4.5",
       "additionalData": {}
     },
     {
       "id": "songcore",
-      "versionRange": "^1.0.0",
+      "versionRange": "^1.1.25",
       "additionalData": {
         "includeQmod": true
       }
     },
     {
       "id": "sombrero",
-      "versionRange": "*",
+      "versionRange": "^0.1.43",
       "additionalData": {}
     },
     {
       "id": "scotland2",
-      "versionRange": "^0.1.0",
+      "versionRange": "^0.1.6",
       "additionalData": {
         "includeQmod": false
       }
     },
     {
       "id": "cpp-semver",
-      "versionRange": "^0.1.1",
+      "versionRange": "^0.1.2",
       "additionalData": {}
     },
     {
       "id": "paper2_scotland2",
-      "versionRange": "^4.0.0",
+      "versionRange": "^4.6.4",
       "additionalData": {}
     },
     {
@@ -95,7 +103,7 @@
     },
     {
       "id": "bsml",
-      "versionRange": "^0.4.42",
+      "versionRange": "^0.4.55",
       "additionalData": {}
     }
   ]
