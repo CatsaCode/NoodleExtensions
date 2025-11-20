@@ -36,7 +36,7 @@ NoodleExtensions::NoodleMovementDataProvider* NoodleExtensions::NoodleMovementDa
 
   if (!ad.objectData.noteJumpMovementSpeed.has_value() && !ad.objectData.noteJumpStartBeatOffset.has_value()) return this;
 
-  noteJumpSpeedOverride = ad.objectData.noteJumpMovementSpeed;
+  if (ad.objectData.noteJumpMovementSpeed.has_value()) noteJumpSpeedOverride = ad.objectData.noteJumpMovementSpeed;
 
   float njs = get_noteJumpSpeed();
   float spawnOffset = ad.objectData.noteJumpStartBeatOffset.value_or(noteJumpStartBeatOffset);

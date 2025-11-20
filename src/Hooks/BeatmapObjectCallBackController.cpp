@@ -32,13 +32,6 @@ static GlobalNamespace::IReadonlyBeatmapData* beatmapData;
 static BeatmapObjectSpawnController::InitData* initData;
 static GlobalNamespace::BeatmapObjectSpawnMovementData* movementData;
 
-inline float GetSpawnAheadTime(BeatmapObjectSpawnController::InitData* initData,
-                               BeatmapObjectSpawnMovementData* movementData, std::optional<float> inputNjs,
-                               std::optional<float> inputOffset) {
-  return 0.5f +
-         (SpawnDataHelper::GetJumpDuration(inputNjs, inputOffset) * 0.5f);
-}
-
 inline float ObjectSortGetTime(BeatmapDataItem* n) {
   static auto* customObstacleDataClass = classof(CustomJSONData::CustomObstacleData*);
   static auto* customNoteDataClass = classof(CustomJSONData::CustomNoteData*);
@@ -63,7 +56,7 @@ inline float ObjectSortGetTime(BeatmapDataItem* n) {
   auto const njs = ad.objectData.noteJumpMovementSpeed;           // .value_or(NECaches::noteJumpMovementSpeed);
   auto const spawnOffset = ad.objectData.noteJumpStartBeatOffset; //.value_or(NECaches::noteJumpStartBeatOffset);
 
-  *aheadTime = GetSpawnAheadTime(initData, movementData, njs, spawnOffset);
+  *aheadTime = SpawnDataHelper::GetSpawnAheadTime(njs, spawnOffset);
 
   return n->time - *aheadTime;
 }
