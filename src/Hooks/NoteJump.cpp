@@ -160,11 +160,17 @@ MAKE_HOOK_MATCH(NoteJump_ManualUpdate, &NoteJump::ManualUpdate, Vector3, NoteJum
       action3->Invoke(self);
     }
   }
-  if (songTime >= self->_missedTime && !self->_missedMarkReported) {
-    self->_missedMarkReported = true;
-    auto action4 = self->noteJumpDidPassMissedMarkerEvent;
-    if (action4 != nullptr) {
-      action4->Invoke();
+
+  {
+    float num = elapsedTime;
+    float missedCompare = NoteMissedTimeAdjust(self->_noteTime, self->_jumpDuration, num);
+
+    if (missedCompare >= self->_missedTime && !self->_missedMarkReported) {
+      self->_missedMarkReported = true;
+      auto action4 = self->noteJumpDidPassMissedMarkerEvent;
+      if (action4 != nullptr) {
+        action4->Invoke();
+      }
     }
   }
   // transpile here

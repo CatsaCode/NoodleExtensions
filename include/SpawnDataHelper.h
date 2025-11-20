@@ -85,7 +85,8 @@ constexpr float GetJumpDuration(std::optional<float> inputNjs,
 
 inline float GetSpawnAheadTime(std::optional<float> inputNjs,
                                std::optional<float> inputOffset) {
-  return GlobalNamespace::VariableMovementDataProvider::kMoveDuration + (GetJumpDuration(inputNjs, inputOffset) * 0.5f);
+  float moveDuration = GlobalNamespace::VariableMovementDataProvider::kMoveDuration;
+  return moveDuration + (GetJumpDuration(inputNjs, inputOffset) * 0.5f);
 }
 
 float HighestJumpPosYForLineLayer(float lineLayer);

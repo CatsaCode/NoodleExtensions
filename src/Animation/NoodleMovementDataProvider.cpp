@@ -9,7 +9,7 @@
 DEFINE_TYPE(NoodleExtensions, NoodleMovementDataProvider);
 
 NoodleExtensions::NoodleMovementDataProvider* NoodleExtensions::NoodleMovementDataProvider::InitObject(GlobalNamespace::BeatmapObjectData* beatmapObjectData) {
-    jumpDistanceOverride = std::nullopt;
+  jumpDistanceOverride = std::nullopt;
   jumpDurationOverride = std::nullopt;
   halfJumpDurationOverride = std::nullopt;
   spawnAheadTimeOverride = std::nullopt;
@@ -41,11 +41,13 @@ NoodleExtensions::NoodleMovementDataProvider* NoodleExtensions::NoodleMovementDa
   float njs = get_noteJumpSpeed();
   float spawnOffset = ad.objectData.noteJumpStartBeatOffset.value_or(noteJumpStartBeatOffset);
   switch (noteJumpValueType) {
-    case GlobalNamespace::BeatmapObjectSpawnMovementData::NoteJumpValueType::JumpDuration:
+    case GlobalNamespace::BeatmapObjectSpawnMovementData::NoteJumpValueType::JumpDuration: {
       jumpDurationOverride = spawnOffset * 2.0f;
       halfJumpDurationOverride = spawnOffset;
       break;
-    case GlobalNamespace::BeatmapObjectSpawnMovementData::NoteJumpValueType::BeatOffset:
+    }
+     
+    case GlobalNamespace::BeatmapObjectSpawnMovementData::NoteJumpValueType::BeatOffset: {
       float halfJumpDurationInBeats = GlobalNamespace::CoreMathUtils::CalculateHalfJumpDurationInBeats(
         beatmapObjectSpawnMovementData->_startHalfJumpDurationInBeats,
         beatmapObjectSpawnMovementData->_maxHalfJumpDistance,
@@ -56,6 +58,11 @@ NoodleExtensions::NoodleMovementDataProvider* NoodleExtensions::NoodleMovementDa
       float halfJump = oneBeatDuration * halfJumpDurationInBeats;
       halfJumpDurationOverride = halfJump;
       jumpDurationOverride = halfJump * 2.0f;
+      break;
+    }
+     
+    default:
+      NELogger::Logger.error("Unknown NoteJumpValueType {}", (int)noteJumpValueType);
       break;
   }
 
@@ -149,4 +156,10 @@ float NoodleExtensions::NoodleMovementDataProvider::JumpPosYForLineLayerAtDistan
 void NoodleExtensions::NoodleMovementDataProvider::ctor() {
   beatmapObjectSpawnMovementData = GlobalNamespace::BeatmapObjectSpawnMovementData::New_ctor();
   beatmapObjectSpawnMovementData->Init(NECaches::numberOfLines, NECaches::JumpOffsetYProvider.ptr(), NEVector::Vector3::right());
+  
+  // initialize base data
+  // TODO: Check if we need more initialization
+  noteJumpValueType = NECaches::InitData->noteJumpValueType;
+  noteJumpStartBeatOffset = NECaches::InitData->noteJumpValue;
+  oneBeatDuration = SpawnDataHelper::OneBeatDuration(NECaches::beatsPerMinute);
 }
