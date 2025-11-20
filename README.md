@@ -7,20 +7,11 @@ A port of the Noodle Extensions mod made originally for the PC version of Beat S
 <h3><u>This list is not final and will continue to grow</u></h3>
 
 - [x] Fix note jump animation (notes simply pop into existence rather than flying into view)
-- [x] Fix notes being invisible on pretty much all modcharts. Perhaps notes that are on a track?
+- [x] Fix notes being invisible on pretty much all modcharts. Perhaps notes that are on a track? (Thanks @Fernthedev)
 - [x] Fix audio being drowned out for seemingly no reason. Common in Doppelganger. Perhaps an issue with walls?
-- [ ] Fix notes looking towards (0, 0, 0). Maybe calculated in `src/hooks/NoteJump.cpp`
-- [ ] Fix start beat offset, the likely cause for:
-  - Missing "Pause" notes in Pause
-  - The missing SBO test in the "NE NJS and SBO Test" test map
-  - Missing notes at 1:00 in original Up and Down
-  - Note: The long note animation in Up and Down 1:47 works, perhaps it's a fake note?
-  - Weirdly timed Doppelganger bomb section 2:28
-  - Weirdly close and fast notes in Doppelganger 3:57
-  - Absolute chaos at Doppelganger 4:04. 
-  - At this point, the note's lifetime animation may be getting time scaled rather than cut
-- [ ] Fix notes zipping toward the player in Pause
-- [ ] Fix notes not coloring in Up and Down 1:06 (may just need to install Chroma)
+- [x] Fix notes looking towards (0, 0, 0). Maybe calculated in `src/hooks/NoteJump.cpp` (Thanks @FrozenAlex)
+- [x] Fix start beat offset (Thanks @FrozenAlex)
+- [x] Fix notes zipping toward the player in Pause (SBO)
 - [ ] Fix note dissolve not being removed in Up and Down 1:10, Doppelganger 0:07, and Doppelganger 1:52
 - [ ] Fix exaggerated track movements such as Doppelganger 0:05, 0:12, and 2:47
 - [ ] Fix wall.. transformations? Something is very wrong with the walls. Ex: Doppelganger 3:04. More tame ex: 4:22
